@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light" data-font-size="medium">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Agrinho 2026 – Agro Forte, Futuro Sustentável: equilíbrio entre produção e meio ambiente no Paraná." />
+  <title>Agrinho 2026 – Agro Forte, Futuro Sustentável</title>
+  <style>
+/* ═══════════════════════════════════════════════════
+   AGRINHO 2026 – Agro Forte, Futuro Sustentável
+   style.css  ·  Paraná
+═══════════════════════════════════════════════════ */
+
+/* ── TOKENS ── */
+:root {
+  /* Cores – tema claro */
+  --clr-forest:   #1A3D2B;
+  --clr-leaf:     #2D6A4F;
+  --clr-leaf-lt:  #40916C;
+  --clr-gold:     #C9A84C;
+  --clr-gold-lt:  #E8C96F;
+  --clr-earth:    #7B5E3A;
+  --clr-bg:       #F5F0E8;
+  --clr-surface:  #FDFAF4;
+  --clr-surface2: #EDE8DC;
+  --clr-text:     #1A2018;
+  --clr-text-2:   #3D4A38;
+  --clr-text-3:   #6B7A64;
+  --clr-border:   #C8C0B0;
+  --clr-accent:   #C9A84C;
+
+  /* Tipografia */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Escala de fonte base */
+  --font-base: 16px;
+
+  /* Espaçamentos */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  7rem;
+
+  /* Raios */
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(26,61,43,.10);
+  --shadow-md: 0 6px 24px rgba(26,61,43,.14);
+  --shadow-lg: 0 16px 48px rgba(26,61,43,.18);
+
+  /* Transições */
+  --transition: 0.28s cubic-bezier(.4,0,.2,1);
+
+  /* Barra de acessibilidade */
+  --a11y-h: 52px;
+}
+
+/* ── MODO ESCURO ── */
+[data-theme="dark"] {
+  --clr-bg:       #0D1F16;
+  --clr-surface:  #162A1E;
+  --clr-surface2: #1E3829;
+  --clr-text:     #E8F5EE;
+  --clr-text-2:   #B8D4C4;
+  --clr-text-3:   #7DA895;
+  --clr-border:   #2D4A38;
+  --clr-gold:     #E8C96F;
+  --clr-gold-lt:  #F5DFA0;
+  --clr-leaf:     #52B788;
+  --clr-leaf-lt:  #74C69D;
+  --clr-forest:   #0A1810;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.35);
+  --shadow-md: 0 6px 24px rgba(0,0,0,.45);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.55);
+}
+
+/* ── ESCALA DE FONTE ACESSÍVEL ── */
+[data-font-size="small"]  { --font-base: 14px; }
+[data-font-size="medium"] { --font-base: 16px; }
+[data-font-size="large"]  { --font-base: 19px; }
+[data-font-size="xlarge"] { --font-base: 22px; }
+
+/* ─────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: var(--font-base);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--a11y-h) + 64px);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.7;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─────────────────────────────────────
+   SKIP LINKS
+───────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: .5rem 1.2rem;
+  background: var(--clr-gold);
+  color: var(--clr-forest);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0.5rem; outline: 3px solid var(--clr-forest); }
+
+/* ─────────────────────────────────────
+   BARRA DE ACESSIBILIDADE
+───────────────────────────────────── */
+#accessibility-bar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 0 var(--space-md);
+  height: var(--a11y-h);
+  background: var(--clr-forest);
+  border-bottom: 2px solid var(--clr-leaf);
+  flex-wrap: wrap;
+}
+
+.a11y-label {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-right: .5rem;
+}
+
+.a11y-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .9rem;
+  background: transparent;
+  border: 1.5px solid rgba(201,168,76,.45);
+  border-radius: var(--radius-full);
+  color: #e8f5ee;
+  font-size: .8rem;
+  font-weight: 500;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.a11y-btn:hover,
+.a11y-btn:focus-visible {
+  background: rgba(201,168,76,.18);
+  border-color: var(--clr-gold);
+  color: var(--clr-gold-lt);
+  outline: 2px solid var(--clr-gold);
+  outline-offset: 2px;
+}
+
+.a11y-btn[aria-pressed="true"] {
+  background: var(--clr-gold);
+  border-color: var(--clr-gold);
+  color: var(--clr-forest);
+  font-weight: 700;
+}
+
+.a11y-btn--icon {
+  padding: .35rem .6rem;
+  font-weight: 700;
+  font-size: .85rem;
+}
+
+.a11y-btn--stop {
+  border-color: rgba(255,100,100,.5);
+  color: #ffaaaa;
+}
+.a11y-btn--stop:hover {
+  background: rgba(255,100,100,.2);
+  border-color: #ff8080;
+  color: #ff8080;
+}
+
+.font-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  border: 1.5px solid rgba(201,168,76,.3);
+  border-radius: var(--radius-full);
+  padding: .2rem .4rem;
+}
+
+.font-indicator {
+  min-width: 1.4rem;
+  text-align: center;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--clr-gold);
+}
+
+/* ─────────────────────────────────────
+   NAVEGAÇÃO
+───────────────────────────────────── */
+#cabecalho {
+  position: sticky;
+  top: var(--a11y-h);
+  z-index: 800;
+  background: rgba(26,61,43,.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,.2);
+}
+
+#nav-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .9rem var(--space-md);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+.logo-symbol {
+  font-size: 1.6rem;
+  color: var(--clr-gold);
+  line-height: 1;
+}
+.logo-text em {
+  color: var(--clr-gold);
+  font-style: normal;
+}
+
+.nav-links {
+  display: flex;
+  gap: .2rem;
+  align-items: center;
+}
+
+.nav-link {
+  padding: .45rem .9rem;
+  border-radius: var(--radius-full);
+  font-size: .88rem;
+  font-weight: 500;
+  color: rgba(232,245,238,.85);
+  transition: background var(--transition), color var(--transition);
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: rgba(201,168,76,.2);
+  color: var(--clr-gold);
+  outline: 2px solid var(--clr-gold);
+  outline-offset: 2px;
+}
+
+/* Hamburguer */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1.5px solid rgba(201,168,76,.4);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--clr-gold);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ─────────────────────────────────────
+   SEÇÕES – ESTRUTURA BASE
+───────────────────────────────────── */
+.section {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-inner--two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.section-inner--center { text-align: center; }
+
+.section-header { max-width: 700px; margin-bottom: var(--space-lg); }
+.section-header--center { max-width: 700px; margin: 0 auto var(--space-lg); text-align: center; }
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: .7rem;
+}
+
+.section-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--clr-text);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  color: var(--clr-text-2);
+  max-width: 65ch;
+}
+
+/* TTS highlight */
+.tts-reading {
+  outline: 3px solid var(--clr-gold) !important;
+  outline-offset: 6px;
+  border-radius: var(--radius-sm);
+  background: rgba(201,168,76,.08);
+}
+
+/* ─────────────────────────────────────
+   BOTÕES
+───────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .85rem 2rem;
+  font-size: .95rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--clr-gold);
+  outline-offset: 3px;
+}
+
+.btn--primary {
+  background: var(--clr-gold);
+  color: var(--clr-forest);
+  box-shadow: 0 4px 20px rgba(201,168,76,.35);
+}
+.btn--primary:hover {
+  background: var(--clr-gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,.5);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: rgba(255,255,255,.5);
+  color: #fff;
+}
+.btn--outline:hover {
+  background: rgba(255,255,255,.1);
+  border-color: #fff;
+}
+
+.btn--large { padding: 1.1rem 2.8rem; font-size: 1.05rem; }
+
+/* ─────────────────────────────────────
+   HERO
+───────────────────────────────────── */
+.section--hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--space-xl) + 2rem) var(--space-md);
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(26,61,43,.92) 0%, rgba(13,31,22,1) 100%);
+}
+
+/* Partículas animadas */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-particles::before,
+.hero-particles::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.25) 0%, transparent 70%);
+  animation: float 18s ease-in-out infinite;
+}
+.hero-particles::before {
+  width: 600px; height: 600px;
+  top: -20%; left: -15%;
+}
+.hero-particles::after {
+  width: 500px; height: 500px;
+  bottom: -20%; right: -10%;
+  animation-delay: -9s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(3%, 4%) scale(1.05); }
+  66%       { transform: translate(-2%, -3%) scale(.97); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--clr-gold);
+  margin-bottom: 1.2rem;
+}
+
+.hero-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 1.4rem;
+}
+.hero-titulo em {
+  font-style: italic;
+  color: var(--clr-gold);
+}
+
+.hero-subtitulo {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: rgba(232,245,238,.82);
+  max-width: 58ch;
+  margin: 0 auto 2.4rem;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Ciclo SVG no hero */
+.ciclo-vivo {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(360px, 40vw);
+  z-index: 1;
+  opacity: .55;
+  pointer-events: none;
+}
+
+.ciclo-svg { width: 100%; height: auto; }
+
+.ring-outer  { animation: spin-ccw 28s linear infinite; transform-origin: 160px 160px; }
+.ring-mid    { animation: spin-cw  18s linear infinite; transform-origin: 160px 160px; stroke-dasharray: 660; stroke-dashoffset: 0; }
+.ring-inner  { animation: pulse   4s ease-in-out infinite; transform-origin: 160px 160px; }
+
+@keyframes spin-cw  { to { transform: rotate(360deg);  } }
+@keyframes spin-ccw { to { transform: rotate(-360deg); } }
+@keyframes pulse    { 0%,100%{opacity:.8;} 50%{opacity:1;} }
+
+.ciclo-node { animation: spin-cw 18s linear infinite; transform-origin: 160px 160px; }
+.ciclo-label { font-size: 9px; fill: var(--clr-gold); letter-spacing: 2px; }
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  z-index: 2;
+  animation: bob 2.5s ease-in-out infinite;
+}
+.hero-scroll-hint span:first-child {
+  display: block;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--clr-gold));
+  border-radius: 2px;
+}
+.scroll-label {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(8px);} }
+
+/* ─────────────────────────────────────
+   CICLO VIVO – CARDS
+───────────────────────────────────── */
+.section--ciclo { background: var(--clr-surface); }
+
+.ciclo-steps {
+  display: flex;
+  align-items: stretch;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.ciclo-card {
+  flex: 1 1 200px;
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem 1.4rem;
+  position: relative;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: default;
+}
+.ciclo-card:hover,
+.ciclo-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--clr-gold);
+  outline: none;
+}
+.ciclo-card:focus-visible { outline: 3px solid var(--clr-gold); outline-offset: 3px; }
+
+.ciclo-card__icon { font-size: 2.2rem; margin-bottom: .8rem; }
+.ciclo-card__number {
+  position: absolute;
+  top: 1rem; right: 1.2rem;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--clr-gold);
+  letter-spacing: .05em;
+  opacity: .7;
+}
+.ciclo-card__titulo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: .6rem;
+  color: var(--clr-text);
+}
+.ciclo-card__desc { font-size: .9rem; color: var(--clr-text-2); }
+
+.ciclo-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  color: var(--clr-gold);
+  opacity: .6;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────
+   DADOS / STATS
+───────────────────────────────────── */
+.section--dados {
+  background: var(--clr-forest);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.section--dados::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.section--dados .section-titulo,
+.section--dados .section-eyebrow { color: var(--clr-gold); }
+.section--dados .section-lead { color: rgba(232,245,238,.75); }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.6rem 1.6rem;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: default;
+  overflow: hidden;
+  position: relative;
+}
+.stat-card:hover,
+.stat-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--clr-gold);
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  outline: none;
+}
+.stat-card:focus-visible { outline: 3px solid var(--clr-gold); outline-offset: 3px; }
+
+/* Barra de progresso */
+.stat-card__bar {
+  height: 4px;
+  background: rgba(255,255,255,.1);
+  border-radius: 4px;
+  margin-bottom: 1.4rem;
+  overflow: hidden;
+}
+.stat-card__bar span {
+  display: block;
+  height: 100%;
+  width: var(--pct);
+  background: linear-gradient(90deg, var(--clr-leaf-lt), var(--clr-gold));
+  border-radius: 4px;
+  animation: grow-bar 1.4s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes grow-bar { from{width:0} to{width:var(--pct)} }
+
+.stat-card__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+.stat-card__value sup {
+  font-size: .45em;
+  font-weight: 400;
+  color: var(--clr-gold);
+  vertical-align: super;
+  margin-left: .1em;
+}
+.stat-card__label {
+  font-size: .95rem;
+  font-weight: 600;
+  color: rgba(232,245,238,.9);
+  margin-bottom: .5rem;
+}
+.stat-card__context {
+  font-size: .82rem;
+  color: rgba(232,245,238,.55);
+}
+
+/* ─────────────────────────────────────
+   PRÁTICAS
+───────────────────────────────────── */
+.section--praticas { background: var(--clr-bg); }
+
+.praticas-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.2rem;
+}
+
+.pratica-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  cursor: default;
+}
+.pratica-card:hover,
+.pratica-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--clr-gold);
+  outline: none;
+}
+.pratica-card:focus-visible { outline: 3px solid var(--clr-gold); outline-offset: 3px; }
+
+.pratica-card--destaque { grid-column: span 12; flex-direction: row; align-items: flex-start; }
+.pratica-card:not(.pratica-card--destaque):nth-child(3) { grid-column: span 3; }
+.pratica-card:not(.pratica-card--destaque):nth-child(5) { grid-column: span 3; }
+.pratica-card:not(.pratica-card--destaque):nth-child(7) { grid-column: span 3; }
+.pratica-card:not(.pratica-card--destaque):nth-child(9) { grid-column: span 3; }
+
+.pratica-card__media {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.pratica-card--destaque .pratica-card__media {
+  font-size: 3rem;
+  margin-right: 1rem;
+  padding: 1rem;
+  background: var(--clr-surface2);
+  border-radius: var(--radius-sm);
+}
+
+.pratica-card__titulo {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: .3rem;
+}
+.pratica-card--destaque .pratica-card__titulo { font-size: 1.3rem; }
+
+.pratica-card__body p { font-size: .9rem; color: var(--clr-text-2); }
+
+.pratica-tag {
+  display: inline-block;
+  margin-top: .6rem;
+  margin-right: .4rem;
+  padding: .25rem .75rem;
+  background: rgba(45,106,79,.12);
+  color: var(--clr-leaf-lt);
+  border-radius: var(--radius-full);
+  font-size: .75rem;
+  font-weight: 600;
+  border: 1px solid rgba(45,106,79,.25);
+}
+[data-theme="dark"] .pratica-tag {
+  background: rgba(82,183,136,.15);
+  color: var(--clr-leaf);
+  border-color: rgba(82,183,136,.3);
+}
+
+/* Grid compacto de práticas para não-destaque */
+.praticas-grid .pratica-card:nth-child(3),
+.praticas-grid .pratica-card:nth-child(5),
+.praticas-grid .pratica-card:nth-child(7),
+.praticas-grid .pratica-card:nth-child(9) {
+  grid-column: span 3;
+}
+
+/* ─────────────────────────────────────
+   FUTURO SUSTENTÁVEL
+───────────────────────────────────── */
+.section--futuro { background: var(--clr-surface); }
+
+.futuro-conteudo p { color: var(--clr-text-2); margin-bottom: 1rem; }
+
+.futuro-planet {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+}
+.futuro-planet__core {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--clr-leaf-lt), var(--clr-forest));
+  box-shadow: 0 0 40px rgba(45,106,79,.5), inset 0 0 20px rgba(0,0,0,.2);
+}
+.futuro-planet__ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,.25);
+  transform: translate(-50%,-50%);
+}
+.futuro-planet__ring--1 { width: 200px; height: 200px; animation: spin-cw 12s linear infinite; }
+.futuro-planet__ring--2 { width: 270px; height: 270px; border-style: dashed; animation: spin-ccw 20s linear infinite; }
+
+.futuro-orbit {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200px; height: 200px;
+  margin: -100px 0 0 -100px;
+  border-radius: 50%;
+  animation: spin-cw 12s linear infinite;
+}
+.futuro-orbit--2 {
+  width: 270px; height: 270px;
+  margin: -135px 0 0 -135px;
+  animation: spin-ccw 20s linear infinite;
+}
+.futuro-dot {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 6px rgba(201,168,76,.6));
+}
+
+.futuro-compromissos {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  margin-top: 2rem;
+}
+.compromisso {
+  display: flex;
+  align-items: flex-start;
+  gap: .9rem;
+  padding: .9rem 1.1rem;
+  background: var(--clr-bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--clr-gold);
+  font-size: .9rem;
+  color: var(--clr-text-2);
+  transition: transform var(--transition);
+  cursor: default;
+}
+.compromisso:hover,
+.compromisso:focus-visible {
+  transform: translateX(5px);
+  outline: none;
+}
+.compromisso:focus-visible { outline: 2px solid var(--clr-gold); outline-offset: 2px; }
+.compromisso__icon { font-size: 1.3rem; flex-shrink: 0; }
+.compromisso strong { color: var(--clr-text); }
+
+/* ─────────────────────────────────────
+   AÇÃO
+───────────────────────────────────── */
+.section--acao {
+  background: var(--clr-forest);
+  color: #fff;
+}
+.section--acao .section-titulo,
+.section--acao .section-eyebrow { color: var(--clr-gold); }
+.section--acao .section-lead { color: rgba(232,245,238,.75); margin: 0 auto var(--space-lg); }
+
+.acoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.4rem;
+  margin-bottom: 3rem;
+}
+
+.acao-item {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: var(--radius-md);
+  padding: 1.8rem 1.4rem;
+  text-align: left;
+  transition: transform var(--transition), border-color var(--transition);
+  cursor: default;
+}
+.acao-item:hover,
+.acao-item:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--clr-gold);
+  outline: none;
+}
+.acao-item:focus-visible { outline: 3px solid var(--clr-gold); outline-offset: 3px; }
+.acao-item__icon { font-size: 2rem; margin-bottom: .8rem; }
+.acao-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .5rem;
+}
+.acao-item p { font-size: .88rem; color: rgba(232,245,238,.7); }
+
+/* ─────────────────────────────────────
+   RODAPÉ
+───────────────────────────────────── */
+#rodape {
+  background: #0A1810;
+  color: rgba(232,245,238,.5);
+  padding: 2.5rem var(--space-md);
+  text-align: center;
+}
+.footer-inner { max-width: 720px; margin: 0 auto; }
+.footer-inner .nav-logo { justify-content: center; margin-bottom: 1rem; color: rgba(255,255,255,.7); }
+.footer-desc { font-size: .88rem; margin-bottom: .5rem; }
+.footer-desc em { color: var(--clr-gold); font-style: normal; }
+.footer-credit { font-size: .78rem; opacity: .5; }
+
+/* ─────────────────────────────────────
+   TTS STATUS
+───────────────────────────────────── */
+.tts-status {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--clr-forest);
+  color: var(--clr-gold);
+  border: 1.5px solid var(--clr-gold);
+  padding: .55rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  box-shadow: var(--shadow-md);
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+  white-space: nowrap;
+}
+.tts-status.visible { opacity: 1; }
+
+/* ─────────────────────────────────────
+   SCROLL ANIMATIONS
+───────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─────────────────────────────────────
+   RESPONSIVO
+───────────────────────────────────── */
+@media (max-width: 960px) {
+  .ciclo-vivo { display: none; }
+  .section-inner--two-col { grid-template-columns: 1fr; }
+  .futuro-visual { order: -1; }
+
+  .praticas-grid .pratica-card:nth-child(3),
+  .praticas-grid .pratica-card:nth-child(5),
+  .praticas-grid .pratica-card:nth-child(7),
+  .praticas-grid .pratica-card:nth-child(9) { grid-column: span 6; }
+
+  .pratica-card--destaque { flex-direction: column; }
+}
+
+@media (max-width: 700px) {
+  :root { --space-xl: 4.5rem; --space-lg: 2.5rem; }
+
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    flex-direction: column;
+    background: var(--clr-forest);
+    padding: 1rem;
+    gap: .25rem;
+    display: none;
+    border-bottom: 2px solid rgba(201,168,76,.2);
+  }
+  .nav-links.open { display: flex; }
+  .nav-link { padding: .7rem 1rem; border-radius: var(--radius-sm); width: 100%; }
+
+  #cabecalho { position: relative; }
+
+  .ciclo-steps { flex-direction: column; }
+  .ciclo-arrow { transform: rotate(90deg); align-self: center; }
+
+  .praticas-grid { grid-template-columns: 1fr; }
+  .pratica-card--destaque,
+  .praticas-grid .pratica-card:nth-child(n) { grid-column: span 1; }
+
+  .a11y-label { display: none; }
+  .btn-text { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-titulo { font-size: 2.4rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Focus visible global */
+:focus-visible {
+  outline: 3px solid var(--clr-gold);
+  outline-offset: 3px;
+}
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       BARRA DE ACESSIBILIDADE
+  ══════════════════════════════════════════ -->
+  <div id="accessibility-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
+    <span class="a11y-label">Acessibilidade</span>
+
+    <button id="btn-dark-mode" class="a11y-btn" aria-pressed="false" aria-label="Ativar modo escuro" title="Modo escuro">
+      <span class="icon" aria-hidden="true">🌙</span>
+      <span class="btn-text">Modo Escuro</span>
+    </button>
+
+    <div class="font-controls" role="group" aria-label="Tamanho da fonte">
+      <button id="btn-font-decrease" class="a11y-btn a11y-btn--icon" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
+      <span class="font-indicator" aria-live="polite" aria-label="Tamanho atual da fonte: médio" id="font-size-label">A</span>
+      <button id="btn-font-increase" class="a11y-btn a11y-btn--icon" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+    </div>
+
+    <button id="btn-tts" class="a11y-btn" aria-pressed="false" aria-label="Ativar leitura em voz alta" title="Leitura em voz alta">
+      <span class="icon" aria-hidden="true">🔊</span>
+      <span class="btn-text">Leitura em Voz Alta</span>
+    </button>
+
+    <button id="btn-stop-tts" class="a11y-btn a11y-btn--stop" aria-label="Parar leitura em voz alta" title="Parar leitura" hidden>
+      <span class="icon" aria-hidden="true">⏹</span>
+      <span class="btn-text">Parar Leitura</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SKIP LINKS (ACESSIBILIDADE)
+  ══════════════════════════════════════════ -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+  <a href="#nav-principal" class="skip-link">Pular para a navegação</a>
+
+  <!-- ══════════════════════════════════════════
+       CABEÇALHO / NAVEGAÇÃO
+  ══════════════════════════════════════════ -->
+  <header id="cabecalho" role="banner">
+    <nav id="nav-principal" role="navigation" aria-label="Navegação principal">
+      <div class="nav-logo" aria-label="Agrinho 2026 - Início">
+        <span class="logo-symbol" aria-hidden="true">⬡</span>
+        <span class="logo-text">Agrinho <em>2026</em></span>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menu de navegação">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul id="nav-menu" class="nav-links" role="list">
+        <li><a href="#hero" class="nav-link" aria-label="Ir para seção Início">Início</a></li>
+        <li><a href="#ciclo" class="nav-link" aria-label="Ir para seção O Ciclo Vivo">O Ciclo</a></li>
+        <li><a href="#dados" class="nav-link" aria-label="Ir para seção Paraná em Números">Paraná</a></li>
+        <li><a href="#praticas" class="nav-link" aria-label="Ir para seção Práticas Sustentáveis">Práticas</a></li>
+        <li><a href="#futuro" class="nav-link" aria-label="Ir para seção Futuro Sustentável">Futuro</a></li>
+        <li><a href="#acao" class="nav-link" aria-label="Ir para seção Tome Atitude">Ação</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+  ══════════════════════════════════════════ -->
+  <main id="conteudo-principal" tabindex="-1">
+
+    <!-- ─── HERO ─── -->
+    <section id="hero" class="section section--hero" aria-labelledby="hero-titulo" data-readable="true">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-gradient"></div>
+      </div>
+
+      <!-- Ciclo Vivo SVG animado – assinatura visual -->
+      <div class="ciclo-vivo" aria-hidden="true" id="ciclo-svg-container">
+        <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="ciclo-svg" role="img" aria-label="Ciclo vivo: anel animado representando a conexão entre campo, tecnologia e natureza">
+          <!-- Anel externo -->
+          <circle cx="160" cy="160" r="140" stroke="var(--clr-leaf)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4" class="ring-outer"/>
+          <!-- Anel do meio -->
+          <circle cx="160" cy="160" r="105" stroke="var(--clr-gold)" stroke-width="2" stroke-dasharray="880" stroke-dashoffset="0" class="ring-mid"/>
+          <!-- Anel interno -->
+          <circle cx="160" cy="160" r="70" stroke="var(--clr-leaf)" stroke-width="3" class="ring-inner"/>
+
+          <!-- Ícone Terra / Campo -->
+          <g class="ciclo-node" transform="translate(160,35)">
+            <circle r="22" fill="var(--clr-forest)" stroke="var(--clr-gold)" stroke-width="2"/>
+            <text y="7" text-anchor="middle" font-size="18" fill="var(--clr-gold)" aria-hidden="true">🌾</text>
+          </g>
+          <!-- Ícone Tecnologia -->
+          <g class="ciclo-node" transform="translate(278,228)">
+            <circle r="22" fill="var(--clr-forest)" stroke="var(--clr-gold)" stroke-width="2"/>
+            <text y="7" text-anchor="middle" font-size="18" fill="var(--clr-gold)" aria-hidden="true">⚙️</text>
+          </g>
+          <!-- Ícone Natureza -->
+          <g class="ciclo-node" transform="translate(42,228)">
+            <circle r="22" fill="var(--clr-forest)" stroke="var(--clr-gold)" stroke-width="2"/>
+            <text y="7" text-anchor="middle" font-size="18" fill="var(--clr-gold)" aria-hidden="true">🌿</text>
+          </g>
+
+          <!-- Labels -->
+          <text x="160" y="14" text-anchor="middle" font-size="9" fill="var(--clr-gold)" font-family="Inter" letter-spacing="2" class="ciclo-label">CAMPO</text>
+          <text x="294" y="262" text-anchor="middle" font-size="9" fill="var(--clr-gold)" font-family="Inter" letter-spacing="2" class="ciclo-label">TECNOLOGIA</text>
+          <text x="28" y="262" text-anchor="middle" font-size="9" fill="var(--clr-gold)" font-family="Inter" letter-spacing="2" class="ciclo-label">NATUREZA</text>
+        </svg>
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">Agrinho 2026 · Paraná</p>
+        <h1 id="hero-titulo" class="hero-titulo">
+          Agro Forte,<br>
+          <em>Futuro Sustentável</em>
+        </h1>
+        <p class="hero-subtitulo">
+          O campo paranaense prova que é possível produzir com força e cuidar do planeta ao mesmo tempo. Conheça o equilíbrio entre produção e meio ambiente.
+        </p>
+        <div class="hero-actions">
+          <a href="#ciclo" class="btn btn--primary" aria-label="Explorar o ciclo de sustentabilidade">Explorar o Ciclo</a>
+          <a href="#dados" class="btn btn--outline" aria-label="Ver dados do Paraná">Ver Dados do Paraná</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span>
+        <span class="scroll-label">Role para descobrir</span>
+      </div>
+    </section>
+
+    <!-- ─── O CICLO VIVO ─── -->
+    <section id="ciclo" class="section section--ciclo" aria-labelledby="ciclo-titulo" data-readable="true">
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-eyebrow">Por que o ciclo importa</p>
+          <h2 id="ciclo-titulo" class="section-titulo">O Ciclo Vivo do Agro Paranaense</h2>
+          <p class="section-lead">No Paraná, agricultura e natureza não são opostos — são parceiros de um mesmo ciclo. Cada etapa depende da anterior, e todas dependem de um solo saudável.</p>
+        </header>
+
+        <div class="ciclo-steps" role="list">
+          <article class="ciclo-card" role="listitem" tabindex="0" aria-label="Etapa 1: Solo Vivo">
+            <div class="ciclo-card__icon" aria-hidden="true">🌱</div>
+            <div class="ciclo-card__number" aria-hidden="true">01</div>
+            <h3 class="ciclo-card__titulo">Solo Vivo</h3>
+            <p class="ciclo-card__desc">O plantio direto cobre o solo com palha, reduz erosão e retém água. O Paraná é referência mundial nessa técnica, com mais de 90% da área agrícola adotando-a.</p>
+          </article>
+
+          <div class="ciclo-arrow" aria-hidden="true">→</div>
+
+          <article class="ciclo-card" role="listitem" tabindex="0" aria-label="Etapa 2: Água Preservada">
+            <div class="ciclo-card__icon" aria-hidden="true">💧</div>
+            <div class="ciclo-card__number" aria-hidden="true">02</div>
+            <h3 class="ciclo-card__titulo">Água Preservada</h3>
+            <p class="ciclo-card__desc">Matas ciliares protegem rios e nascentes. As microbacias hidrográficas do Paraná são monitoradas para garantir que a produção não polua os recursos hídricos.</p>
+          </article>
+
+          <div class="ciclo-arrow" aria-hidden="true">→</div>
+
+          <article class="ciclo-card" role="listitem" tabindex="0" aria-label="Etapa 3: Colheita Inteligente">
+            <div class="ciclo-card__icon" aria-hidden="true">🚜</div>
+            <div class="ciclo-card__number" aria-hidden="true">03</div>
+            <h3 class="ciclo-card__titulo">Colheita Inteligente</h3>
+            <p class="ciclo-card__desc">Tecnologia de precisão reduz o uso de agroquímicos em até 30%, orientando o produtor com sensores e satélites sobre onde e quanto aplicar — sem desperdício.</p>
+          </article>
+
+          <div class="ciclo-arrow" aria-hidden="true">→</div>
+
+          <article class="ciclo-card" role="listitem" tabindex="0" aria-label="Etapa 4: Floresta em Pé">
+            <div class="ciclo-card__icon" aria-hidden="true">🌳</div>
+            <div class="ciclo-card__number" aria-hidden="true">04</div>
+            <h3 class="ciclo-card__titulo">Floresta em Pé</h3>
+            <p class="ciclo-card__desc">O Paraná recuperou mais de 200 mil hectares de vegetação nativa nos últimos 10 anos. Mais floresta significa mais chuva, mais solo fértil e mais colheita no futuro.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PARANÁ EM NÚMEROS ─── -->
+    <section id="dados" class="section section--dados" aria-labelledby="dados-titulo" data-readable="true">
+      <div class="section-inner">
+        <header class="section-header section-header--center">
+          <p class="section-eyebrow">Fatos e números</p>
+          <h2 id="dados-titulo" class="section-titulo">Paraná em Números</h2>
+          <p class="section-lead">O maior produtor agrícola do Brasil também lidera em práticas sustentáveis. Veja como os dados contam essa história.</p>
+        </header>
+
+        <div class="stats-grid" role="list">
+          <article class="stat-card" role="listitem" tabindex="0" aria-label="Paraná é responsável por 21 porcento da produção de grãos do Brasil">
+            <div class="stat-card__bar" aria-hidden="true"><span style="--pct:21%"></span></div>
+            <div class="stat-card__value" aria-hidden="true">21<sup>%</sup></div>
+            <p class="stat-card__label">da produção de grãos do Brasil</p>
+            <p class="stat-card__context">O Paraná colhe mais de 40 milhões de toneladas por safra.</p>
+          </article>
+
+          <article class="stat-card" role="listitem" tabindex="0" aria-label="90 porcento das lavouras usam plantio direto">
+            <div class="stat-card__bar" aria-hidden="true"><span style="--pct:90%"></span></div>
+            <div class="stat-card__value" aria-hidden="true">90<sup>%</sup></div>
+            <p class="stat-card__label">das lavouras com plantio direto</p>
+            <p class="stat-card__context">Prática que protege o solo e reduz emissão de carbono.</p>
+          </article>
+
+          <article class="stat-card" role="listitem" tabindex="0" aria-label="200 mil hectares de vegetação nativa recuperados">
+            <div class="stat-card__bar" aria-hidden="true"><span style="--pct:60%"></span></div>
+            <div class="stat-card__value" aria-hidden="true">200<sup>mil</sup></div>
+            <p class="stat-card__label">hectares de mata recuperados</p>
+            <p class="stat-card__context">Meta do Paraná Verde: restauração de ecossistemas nativos.</p>
+          </article>
+
+          <article class="stat-card" role="listitem" tabindex="0" aria-label="30 porcento de redução no uso de agroquímicos com tecnologia de precisão">
+            <div class="stat-card__bar" aria-hidden="true"><span style="--pct:30%"></span></div>
+            <div class="stat-card__value" aria-hidden="true">−30<sup>%</sup></div>
+            <p class="stat-card__label">no uso de agroquímicos</p>
+            <p class="stat-card__context">Graças à agricultura de precisão e ao monitoramento digital.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PRÁTICAS SUSTENTÁVEIS ─── -->
+    <section id="praticas" class="section section--praticas" aria-labelledby="praticas-titulo" data-readable="true">
+      <div class="section-inner">
+        <header class="section-header">
+          <p class="section-eyebrow">Como fazemos</p>
+          <h2 id="praticas-titulo" class="section-titulo">Práticas que Equilibram Produção e Meio Ambiente</h2>
+        </header>
+
+        <div class="praticas-grid">
+          <article class="pratica-card pratica-card--destaque" tabindex="0" aria-label="Integração Lavoura-Pecuária-Floresta">
+            <div class="pratica-card__media" aria-hidden="true">🌾🐄🌲</div>
+            <div class="pratica-card__body">
+              <h3 class="pratica-card__titulo">Integração Lavoura-Pecuária-Floresta</h3>
+              <p>O ILPF combina culturas agrícolas, criação animal e árvores no mesmo espaço. O resultado: mais produtividade, mais biodiversidade e menos emissão de gases.</p>
+              <span class="pratica-tag" aria-label="Benefício: Reduz emissão de CO2">↓ CO₂</span>
+              <span class="pratica-tag" aria-label="Benefício: Aumenta biodiversidade">↑ Biodiversidade</span>
+            </div>
+          </article>
+
+          <article class="pratica-card" tabindex="0" aria-label="Agricultura de Precisão">
+            <div class="pratica-card__media" aria-hidden="true">📡</div>
+            <div class="pratica-card__body">
+              <h3 class="pratica-card__titulo">Agricultura de Precisão</h3>
+              <p>Drones, sensores e satélites mapeiam o campo em tempo real. O produtor aplica somente o necessário, onde necessário.</p>
+              <span class="pratica-tag">Menos insumos</span>
+            </div>
+          </article>
+
+          <article class="pratica-card" tabindex="0" aria-label="Biofertilizantes">
+            <div class="pratica-card__media" aria-hidden="true">🧫</div>
+            <div class="pratica-card__body">
+              <h3 class="pratica-card__titulo">Biofertilizantes</h3>
+              <p>O Paraná lidera o uso de bactérias fixadoras de nitrogênio na soja, substituindo fertilizante químico e economizando bilhões por safra.</p>
+              <span class="pratica-tag">Solo mais saudável</span>
+            </div>
+          </article>
+
+          <article class="pratica-card" tabindex="0" aria-label="Energia Limpa no Campo">
+            <div class="pratica-card__media" aria-hidden="true">☀️</div>
+            <div class="pratica-card__body">
+              <h3 class="pratica-card__titulo">Energia Limpa no Campo</h3>
+              <p>Painéis solares e biodigestores transformam resíduos da produção em energia elétrica. Propriedades rurais que produzem sua própria energia limpa.</p>
+              <span class="pratica-tag">Energia renovável</span>
+            </div>
+          </article>
+
+          <article class="pratica-card" tabindex="0" aria-label="Cisternas e Captação de Chuva">
+            <div class="pratica-card__media" aria-hidden="true">🌧️</div>
+            <div class="pratica-card__body">
+              <h3 class="pratica-card__titulo">Gestão da Água</h3>
+              <p>Cisternas, terraços e bacias de contenção retêm a água da chuva, reduzem erosão e garantem irrigação mesmo em períodos de estiagem.</p>
+              <span class="pratica-tag">Recursos hídricos</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FUTURO SUSTENTÁVEL ─── -->
+    <section id="futuro" class="section section--futuro" aria-labelledby="futuro-titulo" data-readable="true">
+      <div class="section-inner section-inner--two-col">
+        <div class="futuro-visual" aria-hidden="true">
+          <div class="futuro-planet">
+            <div class="futuro-planet__core"></div>
+            <div class="futuro-planet__ring futuro-planet__ring--1"></div>
+            <div class="futuro-planet__ring futuro-planet__ring--2"></div>
+            <div class="futuro-orbit futuro-orbit--1">
+              <div class="futuro-dot" aria-hidden="true">🌱</div>
+            </div>
+            <div class="futuro-orbit futuro-orbit--2">
+              <div class="futuro-dot" aria-hidden="true">💧</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="futuro-conteudo">
+          <p class="section-eyebrow">Para as próximas gerações</p>
+          <h2 id="futuro-titulo" class="section-titulo">Um Futuro Que Já Está Sendo Construído</h2>
+          <p>O equilíbrio entre produção e meio ambiente não é um sonho distante — é uma escolha que produtores, governos e consumidores fazem hoje.</p>
+          <p>Cada hectare preservado, cada tecnologia adotada e cada gota de água economizada é um tijolo nessa construção. O Paraná mostra que é possível ser o maior produtor do Brasil e ainda proteger o Pantanal, a Mata Atlântica e os rios que abastecem cidades e campos.</p>
+
+          <div class="futuro-compromissos" role="list" aria-label="Compromissos do Paraná para o futuro">
+            <div class="compromisso" role="listitem" tabindex="0">
+              <span class="compromisso__icon" aria-hidden="true">🎯</span>
+              <div>
+                <strong>Meta 2030:</strong> Neutralidade de carbono na agropecuária paranaense.
+              </div>
+            </div>
+            <div class="compromisso" role="listitem" tabindex="0">
+              <span class="compromisso__icon" aria-hidden="true">🌊</span>
+              <div>
+                <strong>Rios Limpos:</strong> 100% das propriedades com matas ciliares até 2030.
+              </div>
+            </div>
+            <div class="compromisso" role="listitem" tabindex="0">
+              <span class="compromisso__icon" aria-hidden="true">📚</span>
+              <div>
+                <strong>Educação:</strong> Agrinho forma uma geração que entende o ciclo da vida.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TOME AÇÃO ─── -->
+    <section id="acao" class="section section--acao" aria-labelledby="acao-titulo" data-readable="true">
+      <div class="section-inner section-inner--center">
+        <p class="section-eyebrow">Você faz parte disso</p>
+        <h2 id="acao-titulo" class="section-titulo">Cada Atitude Conta</h2>
+        <p class="section-lead">Sustentabilidade começa em casa, na escola e no campo. Veja como você pode fazer a diferença no seu dia a dia.</p>
+
+        <div class="acoes-grid" role="list">
+          <div class="acao-item" role="listitem" tabindex="0" aria-label="Ação: Consuma alimentos locais e da época">
+            <div class="acao-item__icon" aria-hidden="true">🥦</div>
+            <h3>Consuma Local</h3>
+            <p>Prefira alimentos produzidos no Paraná e da estação. Menos transporte, menos carbono, mais sabor.</p>
+          </div>
+          <div class="acao-item" role="listitem" tabindex="0" aria-label="Ação: Evite o desperdício de comida">
+            <div class="acao-item__icon" aria-hidden="true">♻️</div>
+            <h3>Sem Desperdício</h3>
+            <p>Planejar as refeições reduz o lixo orgânico. Cada alimento desperdiçado é terra, água e trabalho jogados fora.</p>
+          </div>
+          <div class="acao-item" role="listitem" tabindex="0" aria-label="Ação: Plante algo, mesmo em vaso">
+            <div class="acao-item__icon" aria-hidden="true">🪴</div>
+            <h3>Plante Algo</h3>
+            <p>Uma horta em casa conecta você ao ciclo da terra. Você entende o que o agricultor enfrenta todos os dias.</p>
+          </div>
+          <div class="acao-item" role="listitem" tabindex="0" aria-label="Ação: Compartilhe conhecimento">
+            <div class="acao-item__icon" aria-hidden="true">💬</div>
+            <h3>Compartilhe</h3>
+            <p>Falar sobre sustentabilidade com amigos e família multiplica o impacto. O conhecimento é semente.</p>
+          </div>
+        </div>
+
+        <a href="#hero" class="btn btn--primary btn--large" aria-label="Voltar ao início do site">Voltar ao Início ↑</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       RODAPÉ
+  ══════════════════════════════════════════ -->
+  <footer id="rodape" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-symbol" aria-hidden="true">⬡</span>
+        <span class="logo-text">Agrinho <em>2026</em></span>
+      </div>
+      <p class="footer-desc">Projeto Agrinho 2026 · Tema: <em>Agro Forte, Futuro Sustentável — equilíbrio entre produção e meio ambiente</em> · Estado do Paraná.</p>
+      <p class="footer-credit">Desenvolvido com HTML, CSS e JavaScript · Acessível por design.</p>
+    </div>
+  </footer>
+
+  <!-- TTS status (voz ativa) -->
+  <div id="tts-status" class="tts-status" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+/* ═══════════════════════════════════════════════════
+   AGRINHO 2026 – Agro Forte, Futuro Sustentável
+   script.js  ·  Acessibilidade + Interação
+═══════════════════════════════════════════════════ */
+
+'use strict';
+
+// ─── UTILITÁRIOS ──────────────────────────────────
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+// ─── ESTADO ───────────────────────────────────────
+const STATE = {
+  darkMode:  false,
+  fontSize:  'medium',  // small | medium | large | xlarge
+  ttsActive: false,
+  ttsPaused: false,
+};
+
+const FONT_SIZES   = ['small', 'medium', 'large', 'xlarge'];
+const FONT_LABELS  = { small: 'Fonte Pequena', medium: 'Fonte Média', large: 'Fonte Grande', xlarge: 'Fonte Maior' };
+
+// ─────────────────────────────────────────────────
+// 1. MODO ESCURO
+// ─────────────────────────────────────────────────
+const btnDark      = $('#btn-dark-mode');
+const htmlEl       = document.documentElement;
+
+function applyDarkMode(active) {
+  STATE.darkMode = active;
+  htmlEl.setAttribute('data-theme', active ? 'dark' : 'light');
+  btnDark.setAttribute('aria-pressed', String(active));
+  btnDark.setAttribute('aria-label', active ? 'Desativar modo escuro' : 'Ativar modo escuro');
+  btnDark.querySelector('.btn-text').textContent = active ? 'Modo Claro' : 'Modo Escuro';
+  btnDark.querySelector('.icon').textContent     = active ? '☀️' : '🌙';
+  // Persiste preferência
+  try { localStorage.setItem('agrinho_darkMode', String(active)); } catch(e) {}
+}
+
+btnDark.addEventListener('click', () => applyDarkMode(!STATE.darkMode));
+
+// Restaura preferência salva ou respeita preferência do SO
+(function initDark() {
+  let saved = null;
+  try { saved = localStorage.getItem('agrinho_darkMode'); } catch(e) {}
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyDarkMode(saved !== null ? saved === 'true' : prefersDark);
+})();
+
+// ─────────────────────────────────────────────────
+// 2. TAMANHO DA FONTE
+// ─────────────────────────────────────────────────
+const btnIncrease  = $('#btn-font-increase');
+const btnDecrease  = $('#btn-font-decrease');
+const fontLabel    = $('#font-size-label');
+
+function applyFontSize(size) {
+  STATE.fontSize = size;
+  htmlEl.setAttribute('data-font-size', size);
+  const idx = FONT_SIZES.indexOf(size);
+  btnDecrease.disabled = (idx === 0);
+  btnIncrease.disabled = (idx === FONT_SIZES.length - 1);
+  btnDecrease.setAttribute('aria-disabled', String(idx === 0));
+  btnIncrease.setAttribute('aria-disabled', String(idx === FONT_SIZES.length - 1));
+  // Feedback para leitores de tela
+  fontLabel.setAttribute('aria-label', `Tamanho da fonte: ${FONT_LABELS[size]}`);
+  fontLabel.textContent = 'A';
+  try { localStorage.setItem('agrinho_fontSize', size); } catch(e) {}
+}
+
+btnIncrease.addEventListener('click', () => {
+  const idx = FONT_SIZES.indexOf(STATE.fontSize);
+  if (idx < FONT_SIZES.length - 1) applyFontSize(FONT_SIZES[idx + 1]);
+});
+
+btnDecrease.addEventListener('click', () => {
+  const idx = FONT_SIZES.indexOf(STATE.fontSize);
+  if (idx > 0) applyFontSize(FONT_SIZES[idx - 1]);
+});
+
+(function initFontSize() {
+  let saved = null;
+  try { saved = localStorage.getItem('agrinho_fontSize'); } catch(e) {}
+  applyFontSize(FONT_SIZES.includes(saved) ? saved : 'medium');
+})();
+
+// ─────────────────────────────────────────────────
+// 3. LEITURA EM VOZ ALTA (Web Speech API)
+// ─────────────────────────────────────────────────
+const btnTTS     = $('#btn-tts');
+const btnStopTTS = $('#btn-stop-tts');
+const ttsStatus  = $('#tts-status');
+
+// Seções lidas em ordem
+const READABLE_SECTIONS = [
+  { id: 'hero',     label: 'Seção Início' },
+  { id: 'ciclo',    label: 'O Ciclo Vivo do Agro Paranaense' },
+  { id: 'dados',    label: 'Paraná em Números' },
+  { id: 'praticas', label: 'Práticas Sustentáveis' },
+  { id: 'futuro',   label: 'Futuro Sustentável' },
+  { id: 'acao',     label: 'Cada Atitude Conta' },
+];
+
+let ttsUtteranceQueue = [];
+let currentSectionIdx = 0;
+let currentHighlighted = null;
+
+function extractTextFromSection(sectionEl) {
+  // Pega todo texto legível da seção, excluindo aria-hidden
+  const clone = sectionEl.cloneNode(true);
+  $$('[aria-hidden="true"]', clone).forEach(el => el.remove());
+  // Remove elementos de acessibilidade não-textuais
+  $$('.hero-bg, .hero-particles, .hero-gradient, .hero-scroll-hint, .ciclo-vivo, .stat-card__bar', clone).forEach(el => el.remove());
+  return (clone.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+function showTTSStatus(msg) {
+  ttsStatus.textContent = msg;
+  ttsStatus.classList.add('visible');
+}
+function hideTTSStatus() {
+  ttsStatus.classList.remove('visible');
+  ttsStatus.textContent = '';
+}
+
+function highlightSection(id) {
+  if (currentHighlighted) currentHighlighted.classList.remove('tts-reading');
+  const el = $(`#${id}`);
+  if (el) {
+    el.classList.add('tts-reading');
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    currentHighlighted = el;
+  }
+}
+
+function clearHighlight() {
+  if (currentHighlighted) {
+    currentHighlighted.classList.remove('tts-reading');
+    currentHighlighted = null;
+  }
+}
+
+function readSection(idx) {
+  if (idx >= READABLE_SECTIONS.length) {
+    stopTTS();
+    return;
+  }
+
+  const { id, label } = READABLE_SECTIONS[idx];
+  const sectionEl = $(`#${id}`);
+  if (!sectionEl) { readSection(idx + 1); return; }
+
+  const text = extractTextFromSection(sectionEl);
+  if (!text) { readSection(idx + 1); return; }
+
+  highlightSection(id);
+  showTTSStatus(`🔊 Lendo: ${label}`);
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang  = 'pt-BR';
+  utterance.rate  = 0.92;
+  utterance.pitch = 1.0;
+
+  utterance.onend = () => {
+    if (STATE.ttsActive) {
+      currentSectionIdx = idx + 1;
+      readSection(currentSectionIdx);
+    }
+  };
+
+  utterance.onerror = (e) => {
+    if (e.error !== 'interrupted' && e.error !== 'canceled') {
+      console.warn('TTS error:', e.error);
+    }
+    if (STATE.ttsActive) {
+      currentSectionIdx = idx + 1;
+      readSection(currentSectionIdx);
+    }
+  };
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
+function startTTS() {
+  if (!('speechSynthesis' in window)) {
+    alert('Seu navegador não suporta leitura em voz alta. Por favor, use o Chrome ou Edge.');
+    return;
+  }
+
+  STATE.ttsActive = true;
+  currentSectionIdx = 0;
+  btnTTS.setAttribute('aria-pressed', 'true');
+  btnTTS.setAttribute('aria-label', 'Leitura em voz alta ativa');
+  btnTTS.hidden = true;
+  btnStopTTS.hidden = false;
+
+  readSection(currentSectionIdx);
+}
+
+function stopTTS() {
+  STATE.ttsActive = false;
+  window.speechSynthesis.cancel();
+  clearHighlight();
+  hideTTSStatus();
+  btnTTS.setAttribute('aria-pressed', 'false');
+  btnTTS.setAttribute('aria-label', 'Ativar leitura em voz alta');
+  btnTTS.hidden = false;
+  btnStopTTS.hidden = true;
+}
+
+btnTTS.addEventListener('click', startTTS);
+btnStopTTS.addEventListener('click', stopTTS);
+
+// Parar TTS se usuário sair da página
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && STATE.ttsActive) stopTTS();
+});
+
+// ─────────────────────────────────────────────────
+// 4. NAVEGAÇÃO MOBILE (hamburguer)
+// ─────────────────────────────────────────────────
+const navToggle = $('#nav-toggle');
+const navMenu   = $('#nav-menu');
+
+navToggle.addEventListener('click', () => {
+  const isOpen = navMenu.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+  navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu de navegação');
+});
+
+// Fechar menu ao clicar num link
+$$('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Fechar menu ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ─────────────────────────────────────────────────
+// 5. ANIMAÇÕES DE ENTRADA (IntersectionObserver)
+// ─────────────────────────────────────────────────
+function initFadeIns() {
+  // Elementos que devem aparecer com fade ao entrar na viewport
+  const targets = [
+    ...$$('.ciclo-card'),
+    ...$$('.stat-card'),
+    ...$$('.pratica-card'),
+    ...$$('.acao-item'),
+    ...$$('.compromisso'),
+    ...$$('.section-header'),
+    ...$$('.futuro-visual'),
+    ...$$('.futuro-conteudo'),
+  ];
+
+  targets.forEach((el, i) => {
+    el.classList.add('fade-in');
+    el.style.transitionDelay = `${(i % 5) * 0.09}s`;
+  });
+
+  // Respeita preferência de movimento reduzido
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    targets.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  targets.forEach(el => observer.observe(el));
+}
+
+// ─────────────────────────────────────────────────
+// 6. ANIMAÇÃO DAS BARRAS DE ESTATÍSTICAS
+// ─────────────────────────────────────────────────
+function initStatBars() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bar = entry.target.querySelector('.stat-card__bar span');
+        if (bar) {
+          bar.style.animationPlayState = 'running';
+        }
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  $$('.stat-card').forEach(card => {
+    const bar = card.querySelector('.stat-card__bar span');
+    if (bar) {
+      bar.style.animationPlayState = 'paused';
+      barObserver.observe(card);
+    }
+  });
+}
+
+// ─────────────────────────────────────────────────
+// 7. LINK ATIVO NA NAVEGAÇÃO (scroll)
+// ─────────────────────────────────────────────────
+function initActiveNav() {
+  const sections = $$('section[id]');
+  const navLinks = $$('.nav-link');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}`) {
+            link.style.color = 'var(--clr-gold)';
+            link.style.background = 'rgba(201,168,76,.18)';
+          } else {
+            link.style.color = '';
+            link.style.background = '';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(section => navObserver.observe(section));
+}
+
+// ─────────────────────────────────────────────────
+// 8. CABEÇALHO COM SOMBRA AO ROLAR
+// ─────────────────────────────────────────────────
+function initHeaderScroll() {
+  const header = $('#cabecalho');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.style.boxShadow = '0 4px 24px rgba(0,0,0,.25)';
+    } else {
+      header.style.boxShadow = '';
+    }
+  }, { passive: true });
+}
+
+// ─────────────────────────────────────────────────
+// 9. TECLADO: ESC para parar TTS / fechar menu
+// ─────────────────────────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (STATE.ttsActive) stopTTS();
+    if (navMenu.classList.contains('open')) {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
+  }
+});
+
+// ─────────────────────────────────────────────────
+// 10. INICIALIZAÇÃO
+// ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  initFadeIns();
+  initStatBars();
+  initActiveNav();
+  initHeaderScroll();
+
+  // Anuncia a página para leitores de tela
+  const liveRegion = document.createElement('div');
+  liveRegion.setAttribute('role', 'status');
+  liveRegion.setAttribute('aria-live', 'polite');
+  liveRegion.className = 'sr-only';
+  liveRegion.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);';
+  document.body.appendChild(liveRegion);
+
+  setTimeout(() => {
+    liveRegion.textContent = 'Página Agrinho 2026 carregada. Agro Forte, Futuro Sustentável — equilíbrio entre produção e meio ambiente no Paraná.';
+  }, 800);
+});
+</script>
+</body>
+</html>
